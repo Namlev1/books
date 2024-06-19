@@ -1,3 +1,25 @@
-body {
-    background-color: black;
+:root {
+    background-color: lightpink;
+    font-family: Roboto sans-serif;
+}
+
+body{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.book{
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid black;
+    width: 400px;
+    height: 300px;
 }
