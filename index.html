@@ -3,12 +3,41 @@
 <link href="styles.css" rel="stylesheet">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js" defer></script>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <script defer src="script.js"></script>
     <title>Bookshop</title>
 </head>
 <body>
-    <div class="main">
+<div class="main">
+    <dialog>
+        <form>
+            <label for="title">
+                Title:
+            </label>
+            <input id="title" name="title" type="text">
+            <label for="author">
+                Author:
+            </label>
+            <input id="author" name="author" type="text">
+            <label for="pages">
+                Pages:
+            </label>
+            <input id="pages" name="pages" type="tel">
+            <label for="read">
+                Read?
+            </label>
+            <input id="read" name="read" type="checkbox">
+            <div class="btn-container">
+                <button formmethod="dialog" id="close-dialog-btn" value="cancel">Cancel</button>
+                <button id="confirm-btn" value="default">Confirm</button>
+            </div>
+        </form>
+    </dialog>
+    <div class="title-container">
+        <h1 id="header">Books</h1>
+        <button id="show-dialog-btn">Add new book</button>
+        <div class="books"></div>
     </div>
+</div>
 </body>
 </html>
