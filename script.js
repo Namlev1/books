@@ -55,8 +55,9 @@ const refreshBooks = () => {
     while (books.firstChild) {
         books.removeChild(books.firstChild);
     }
-    myLibrary.forEach((book) => {
+    myLibrary.forEach((book, index) => {
         console.log(book);
+        book.id = index;
         const div = document.createElement('div')
         div.classList.add('book');
         const title = document.createElement('h2');
@@ -73,12 +74,26 @@ const refreshBooks = () => {
             read.textContent = 'Not read'
             read.classList.add('not-read')
         }
+        const removeBtn = document.createElement('button')
+        removeBtn.classList.add('remove-btn')
+        removeBtn.textContent = 'Remove';
+        removeBtn.setAttribute('book-id', String(book.id));
+        removeBtn.addEventListener('click', () => {
+            removeBook(removeBtn.getAttribute('book-id'))
+        })
         div.appendChild(title);
         div.appendChild(author);
         div.appendChild(pages);
         div.appendChild(read)
+        div.appendChild(removeBtn)
         books.appendChild(div);
     })
 }
 
 refreshBooks();
+
+let removeBook = (id) => {
+    console.log(id)
+    delete myLibrary[id];
+    refreshBooks()
+}
