@@ -14,22 +14,22 @@
             <label for="title">
                 Title:
             </label>
-            <input id="title" name="title" type="text">
+            <input id="title" name="title" type="text" required>
             <label for="author">
                 Author:
             </label>
-            <input id="author" name="author" type="text">
+            <input id="author" name="author" type="text" required>
             <label for="pages">
                 Pages:
             </label>
-            <input id="pages" name="pages" type="tel">
+            <input id="pages" name="pages" type="tel" required>
             <label for="read">
                 Read?
             </label>
             <input id="read" name="read" type="checkbox">
             <div class="btn-container">
-                <button formmethod="dialog" id="close-dialog-btn" value="cancel">Cancel</button>
-                <button id="confirm-btn" value="default">Confirm</button>
+                <button type="submit" id="close-dialog-btn" value="cancel" formnovalidate>Cancel</button>
+                <button id="confirm-btn" type="submit" value="default">Confirm</button>
             </div>
         </form>
     </dialog>

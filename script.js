@@ -4,6 +4,7 @@ const showDialogBtn = document.querySelector('#show-dialog-btn')
 const closeDialogBtn = document.querySelector('#close-dialog-btn')
 const confirmDialBtn = document.querySelector('#confirm-btn')
 const dialog = document.querySelector('dialog')
+const form = document.querySelector('form')
 
 const titleInput = document.querySelector('#title');
 const authorInput = document.querySelector('#author');
@@ -14,25 +15,30 @@ showDialogBtn.addEventListener('click', () => {
     dialog.showModal();
 })
 
-closeDialogBtn.addEventListener('click', () => {
-    dialog.close();
+closeDialogBtn.addEventListener('click', (e) => {
+    titleInput.value = ''
+    authorInput.value = ''
+    pagesInput.value = ''
+    readInput.checked = false
+    dialog.close()
 })
 
-confirmDialBtn.addEventListener('click', (e) => {
-    e.preventDefault()
-    const bookData = new Book(
-        titleInput.value,
-        authorInput.value,
-        pagesInput.value,
-        readInput.checked)
-    dialog.close(JSON.stringify(bookData))
-})
-
-dialog.addEventListener("close", (e) => {
-    const bookData = JSON.parse(dialog.returnValue);
-    myLibrary.push(bookData);
-    console.log(`Form return value: ${JSON.stringify(bookData, null, 2)}`)
-    refreshBooks()
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if(form.checkValidity()) {
+        const bookData = new Book(
+            titleInput.value,
+            authorInput.value,
+            pagesInput.value,
+            readInput.checked)
+        myLibrary.push(bookData);
+        dialog.close()
+        titleInput.value = ''
+        authorInput.value = ''
+        pagesInput.value = ''
+        readInput.checked = false
+        refreshBooks()
+    }
 });
 
 const myLibrary = [];
