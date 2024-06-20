@@ -48,6 +48,12 @@ function addBookToLibrary(title, author, pages, read) {
     myLibrary.push(new Book(title, author, pages, read));
 }
 
+function toggleRead(id){
+    const book = myLibrary[id]
+    book.read = !book.read;
+    refreshBooks()
+}
+
 myLibrary.push(new Book('Hobbit', 'J.R.R. Tolkien', 339, true));
 myLibrary.push(new Book('The Witcher', 'Andrzej Sapkowski', 340, false));
 
@@ -81,11 +87,22 @@ const refreshBooks = () => {
         removeBtn.addEventListener('click', () => {
             removeBook(removeBtn.getAttribute('book-id'))
         })
+        const readBtn = document.createElement('button')
+        readBtn.classList.add('remove-btn')
+        readBtn.textContent = 'Toggle read'
+        readBtn.setAttribute('book-id', String(book.id))
+        readBtn.addEventListener('click', () => {
+            toggleRead(readBtn.getAttribute('book-id'))
+        })
+        const btnContainer = document.createElement('div')
+        btnContainer.classList.add('btn-container')
         div.appendChild(title);
         div.appendChild(author);
         div.appendChild(pages);
         div.appendChild(read)
-        div.appendChild(removeBtn)
+        btnContainer.appendChild(removeBtn)
+        btnContainer.appendChild(readBtn)
+        div.appendChild(btnContainer)
         books.appendChild(div);
     })
 }
